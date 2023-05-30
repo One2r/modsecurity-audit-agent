@@ -1,0 +1,57 @@
+{
+	"transaction": {
+		"client_ip": "175.8.160.159",
+		"time_stamp": "Mon May 22 17:11:15 2023",
+		"server_id": "4028df14c8023ca5ca345b3a4b9996c552b0082a",
+		"client_port": 16295,
+		"host_ip": "10.0.0.102",
+		"host_port": 80,
+		"unique_id": "168474667528.534809",
+		"request": {
+			"method": "GET",
+			"http_version": 1.1,
+			"uri": "/.bak",
+			"headers": {
+				"User-Agent": "Apifox/1.0.0 (https://www.apifox.cn)",
+				"Accept": "*/*",
+				"Host": "admintest.leidawaimai.com",
+				"Accept-Encoding": "gzip, deflate, br",
+				"Connection": "keep-alive"
+			}
+		},
+		"response": {
+			"body": "<html>\r\n<head><title>403 Forbidden</title></head>\r\n<body>\r\n<center><h1>403 Forbidden</h1></center>\r\n<hr><center>lsd/1.21.4.1</center>\r\n</body>\r\n</html>\r\n",
+			"http_code": 403,
+			"headers": {
+				"Server": "lsd/1.21.4.1",
+				"Date": "Mon, 22 May 2023 09:11:15 GMT",
+				"Content-Length": "153",
+				"Content-Type": "text/html",
+				"Connection": "keep-alive"
+			}
+		},
+		"producer": {
+			"modsecurity": "ModSecurity v3.0.9 (Linux)",
+			"connector": "ModSecurity-nginx v1.0.3",
+			"secrules_engine": "Enabled",
+			"components": ["OWASP_CRS/3.3.4\""]
+		},
+		"messages": [{
+			"message": "",
+			"details": {
+				"match": "Matched \"Operator `Contains' with parameter `/.' against variable `REQUEST_URI' (Value: `/.bak' )",
+				"reference": "o0,2v4,5",
+				"ruleId": "2100",
+				"file": "/Data/apps/openresty/nginx/conf/modsec/custom/rules_for_admin.conf",
+				"lineNumber": "13",
+				"data": "",
+				"severity": "0",
+				"ver": "",
+				"rev": "",
+				"tags": [],
+				"maturity": "0",
+				"accuracy": "0"
+			}
+		}]
+	}
+}

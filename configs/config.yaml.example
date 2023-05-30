@@ -1,0 +1,19 @@
+app:
+  debug: True
+  port: "8080"
+
+waf:
+  #ban-ip-if-scan-404-url: 10
+  #ban-ip-if-ddos: 3
+
+redis:
+  addr: "127.0.0.1:6379"
+  password: "your-password"
+  db: 0
+
+elasticsearch:
+  url: "http://127.0.0.1:9200"
+  username: "elastic"
+  password: "your-password"
+  audit-log-index: "waf-audit-log"
+  404-log-index: "waf-404-log"
