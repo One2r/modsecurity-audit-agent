@@ -1,0 +1,16 @@
+{
+	"client_ip": "175.8.160.159",
+	"time_stamp": "Mon May 22 17:11:15 2023",
+	"request": {
+		"method": "GET",
+		"http_version": 1.1,
+		"uri": "/.bak",
+		"headers": {
+			"User-Agent": "Apifox/1.0.0 (https://www.apifox.cn)",
+			"Accept": "*/*",
+			"Host": "admintest.leidawaimai.com",
+			"Accept-Encoding": "gzip, deflate, br",
+			"Connection": "keep-alive"
+		}
+	}
+}

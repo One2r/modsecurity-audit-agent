@@ -64,7 +64,7 @@ func SaveIpListToRedis(key string, ipList []string) {
 	})
 
 	for _, ip := range ipList {
-		_, err := rdb.Do(ctx, "CF.ADD", key, ip).Bool()
+		_, err := rdb.Do(ctx, "CF.ADDNX", key, ip).Bool()
 		if err != nil {
 			panic(err)
 		}
@@ -72,7 +72,7 @@ func SaveIpListToRedis(key string, ipList []string) {
 	defer rdb.Close()
 }
 
-func DelIpListToRedis(key string, ipList []string) {
+func DelIpListFromRedis(key string, ipList []string) {
 	ctx := context.Background()
 
 	rdb := redis.NewClient(&redis.Options{

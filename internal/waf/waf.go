@@ -9,10 +9,16 @@ import (
 const IP_TYPE_WHITELIST int = 1
 const IP_TYPE_BLACKLIST int = 2
 
+const RDS_KEY_IP_WHITELIST string = "waf:ip:whitelist"
+const RDS_KEY_IP_BLACKLIST string = "waf:ip:blacklist"
+const RDS_KEY_PREFIX_STATS_IP_SCAN_404 string = "waf:stats:scan404:"
+
 func AddIp(ipType int, ip string) {
-	rdsKey := "waf:ip:whitelist"
+	var rdsKey string
 	if ipType == IP_TYPE_BLACKLIST {
-		rdsKey = "waf:ip:blacklist"
+		rdsKey = RDS_KEY_IP_BLACKLIST
+	} else {
+		rdsKey = RDS_KEY_IP_WHITELIST
 	}
 
 	ipArr := strings.Split(ip, ",")
@@ -21,14 +27,16 @@ func AddIp(ipType int, ip string) {
 }
 
 func DelIp(ipType int, ip string) {
-	rdsKey := "waf:ip:whitelist"
+	var rdsKey string
 	if ipType == IP_TYPE_BLACKLIST {
-		rdsKey = "waf:ip:blacklist"
+		rdsKey = RDS_KEY_IP_BLACKLIST
+	} else {
+		rdsKey = RDS_KEY_IP_WHITELIST
 	}
 
 	ipArr := strings.Split(ip, ",")
 
-	storage.DelIpListToRedis(rdsKey, ipArr)
+	storage.DelIpListFromRedis(rdsKey, ipArr)
 }
 
 func Auditlog(log []byte) {
@@ -37,8 +45,11 @@ func Auditlog(log []byte) {
 	storage.SaveToEs(log, index)
 }
 
-func Notfoundlog(log []byte) {
+func NotFoundLog(log []byte) {
 	// save to es
-	index := viper.GetString("elasticsearch.waf-404-log")
+	index := viper.GetString("elasticsearch.404-log-index")
 	storage.SaveToEs(log, index)
+
+	// ban ip if scan 404 url to many
+	banByScan404(log)
 }

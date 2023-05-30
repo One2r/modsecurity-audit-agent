@@ -44,7 +44,7 @@ func main() {
 	r.POST("/waf/404-log", func(c *gin.Context) {
 		reqBody, err := c.GetRawData()
 		if err == nil && len(reqBody) != 0 {
-			go waf.Notfoundlog(reqBody)
+			go waf.NotFoundLog(reqBody)
 		}
 
 		c.JSON(200, gin.H{
