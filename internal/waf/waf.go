@@ -6,26 +6,29 @@ import (
 	"strings"
 )
 
-func AddIp(biz_type int, ip string) {
-	var rdsKek = "waf:ip:whitelist"
-	if biz_type == 2 {
-		rdsKek = "waf:ip:blacklist"
+const IP_TYPE_WHITELIST int = 1
+const IP_TYPE_BLACKLIST int = 2
+
+func AddIp(ipType int, ip string) {
+	rdsKey := "waf:ip:whitelist"
+	if ipType == IP_TYPE_BLACKLIST {
+		rdsKey = "waf:ip:blacklist"
 	}
 
-	arr := strings.Split(ip, ",")
+	ipArr := strings.Split(ip, ",")
 
-	storage.SaveIpListToRedis(rdsKek, arr)
+	storage.SaveIpListToRedis(rdsKey, ipArr)
 }
 
-func DelIp(biz_type int, ip string) {
-	var rdsKek = "waf:ip:whitelist"
-	if biz_type == 2 {
-		rdsKek = "waf:ip:blacklist"
+func DelIp(ipType int, ip string) {
+	rdsKey := "waf:ip:whitelist"
+	if ipType == IP_TYPE_BLACKLIST {
+		rdsKey = "waf:ip:blacklist"
 	}
 
-	arr := strings.Split(ip, ",")
+	ipArr := strings.Split(ip, ",")
 
-	storage.DelIpListToRedis(rdsKek, arr)
+	storage.DelIpListToRedis(rdsKey, ipArr)
 }
 
 func Auditlog(log []byte) {

@@ -9,7 +9,7 @@ import (
 )
 
 type Form struct {
-	BizType int    `form:"biz_type" binding:"required"`
+	IpType int    `form:"ip_type" binding:"required"`
 	Ip      string `form:"ip" binding:"required"`
 }
 
@@ -60,7 +60,7 @@ func main() {
 			return
 		}
 
-		waf.AddIp(form.BizType, form.Ip)
+		waf.AddIp(form.IpType, form.Ip)
 
 		c.JSON(200, gin.H{
 			"code": "0",
@@ -75,7 +75,7 @@ func main() {
 			return
 		}
 
-		waf.DelIp(form.BizType, form.Ip)
+		waf.DelIp(form.IpType, form.Ip)
 
 		c.JSON(200, gin.H{
 			"code": "0",
