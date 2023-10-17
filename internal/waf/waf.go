@@ -3,7 +3,9 @@ package waf
 import (
 	"github.com/spf13/viper"
 	"modsecurity-auditlog-agent/internal/storage"
+	"modsecurity-auditlog-agent/internal/model"
 	"strings"
+	"encoding/json"
 )
 
 const IP_TYPE_WHITELIST int = 1
@@ -43,13 +45,12 @@ func Auditlog(log []byte) {
 	// save to es
 	index := viper.GetString("elasticsearch.audit-log-index")
 	storage.SaveToEs(log, index)
-}
 
-func NotFoundLog(log []byte) {
-	// save to es
-	index := viper.GetString("elasticsearch.404-log-index")
-	storage.SaveToEs(log, index)
-
-	// ban ip if scan 404 url to many
-	banByScan404(log)
+	var auditlog model.Auditlog
+	if err := json.Unmarshal(log, &auditlog); err != nil {
+		panic(err)
+	}
+	if auditlog.Transaction.Response.HTTPCode == 404 {
+		banByScan404(auditlog)
+	}
 }

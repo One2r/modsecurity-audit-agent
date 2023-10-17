@@ -1,0 +1,45 @@
+{
+	"transaction": {
+		"client_ip": "192.168.1.1",
+		"time_stamp": "Tue Oct 17 16:22:57 2023",
+		"server_id": "b3b3870a878e2d72439e5e10fe1f7984ffbb17e8",
+		"client_port": 51992,
+		"host_ip": "192.168.1.3",
+		"host_port": 80,
+		"unique_id": "169753097722.558326",
+		"request": {
+			"method": "GET",
+			"http_version": 1.1,
+			"uri": "/static/js/aaa.js",
+			"headers": {
+				"Host": "h5test.leidawaimai.com",
+				"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+				"Cookie": "cna=728b2f18ac98406494091613cb3a030d",
+				"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+				"Accept-Encoding": "gzip, deflate",
+				"Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+				"Cache-Control": "no-cache",
+				"Pragma": "no-cache",
+				"Upgrade-Insecure-Requests": "1"
+			}
+		},
+		"response": {
+			"body": "<html>\r\n<head><title>404 Not Found</title></head>\r\n<body>\r\n<center><h1>404 Not Found</h1></center>\r\n<hr><center>nginx/1.24.0</center>\r\n</body>\r\n</html>\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n",
+			"http_code": 404,
+			"headers": {
+				"Server": "openresty/1.21.4.2",
+				"Date": "Tue, 17 Oct 2023 08:22:57 GMT",
+				"Content-Length": "555",
+				"Content-Type": "text/html; charset=utf-8",
+				"Connection": "keep-alive"
+			}
+		},
+		"producer": {
+			"modsecurity": "ModSecurity v3.0.10 (Linux)",
+			"connector": "ModSecurity-nginx v1.0.3",
+			"secrules_engine": "Enabled",
+			"components": ["OWASP_CRS/3.3.5\""]
+		},
+		"messages": []
+	}
+}

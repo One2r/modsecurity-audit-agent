@@ -1,4 +1,4 @@
-package models
+package model
 
 type Auditlog struct {
 	Transaction struct {

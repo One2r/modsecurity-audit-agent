@@ -16,4 +16,3 @@ elasticsearch:
   username: "elastic"
   password: "your-password"
   audit-log-index: "waf-audit-log"
-  404-log-index: "waf-404-log"

@@ -41,18 +41,6 @@ func main() {
 		})
 	})
 
-	r.POST("/waf/404-log", func(c *gin.Context) {
-		reqBody, err := c.GetRawData()
-		if err == nil && len(reqBody) != 0 {
-			go waf.NotFoundLog(reqBody)
-		}
-
-		c.JSON(200, gin.H{
-			"code": "0",
-			"data": "",
-		})
-	})
-
 	r.POST("/waf/ip", func(c *gin.Context) {
 		var form Form
 		if err := c.ShouldBind(&form); err != nil {

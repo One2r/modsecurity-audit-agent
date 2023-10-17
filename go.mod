@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/elastic/go-elasticsearch/v8 v8.0.0-20230427124829-67ab061a41de
 	github.com/gin-gonic/gin v1.9.0
+	github.com/json-iterator/go v1.1.12
 	github.com/redis/go-redis/v9 v9.0.5
 	github.com/spf13/viper v1.15.0
 )
@@ -22,7 +23,6 @@ require (
 	github.com/go-playground/validator/v10 v10.11.2 // indirect
 	github.com/goccy/go-json v0.10.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
-	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect

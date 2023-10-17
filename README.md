@@ -3,7 +3,6 @@ modsecurity 审计代理
 
 ## 功能
 - 接收 modsecurity 审计日志，存入 elasticsearch
-- 接收 404 日志，存入 elasticsearch
 - IP 黑白名单添加、删除接口
 
 ## 依赖
