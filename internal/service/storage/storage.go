@@ -4,13 +4,14 @@ import (
 	"bytes"
 	"context"
 	"crypto/tls"
-	"github.com/elastic/go-elasticsearch/v8"
-	"github.com/elastic/go-elasticsearch/v8/esapi"
-	"github.com/redis/go-redis/v9"
-	"github.com/spf13/viper"
 	"net"
 	"net/http"
 	"time"
+
+	elasticsearch "github.com/elastic/go-elasticsearch/v8"
+	"github.com/elastic/go-elasticsearch/v8/esapi"
+	redis "github.com/redis/go-redis/v9"
+	"github.com/spf13/viper"
 )
 
 func SaveToEs(data []byte, index string) {

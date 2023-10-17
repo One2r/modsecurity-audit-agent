@@ -1,26 +1,22 @@
 package waf
 
 import (
-	"github.com/spf13/viper"
-	"modsecurity-auditlog-agent/internal/storage"
-	"modsecurity-auditlog-agent/internal/model"
 	"strings"
 	"encoding/json"
+
+	"github.com/spf13/viper"
+
+	"modsecurity-auditlog-agent/internal/service/storage"
+	"modsecurity-auditlog-agent/internal/model"
+	"modsecurity-auditlog-agent/internal/constant"
 )
-
-const IP_TYPE_WHITELIST int = 1
-const IP_TYPE_BLACKLIST int = 2
-
-const RDS_KEY_IP_WHITELIST string = "waf:ip:whitelist"
-const RDS_KEY_IP_BLACKLIST string = "waf:ip:blacklist"
-const RDS_KEY_PREFIX_STATS_IP_SCAN_404 string = "waf:stats:scan404:"
 
 func AddIp(ipType int, ip string) {
 	var rdsKey string
-	if ipType == IP_TYPE_BLACKLIST {
-		rdsKey = RDS_KEY_IP_BLACKLIST
+	if ipType == constant.IP_TYPE_BLACKLIST {
+		rdsKey = constant.RDS_KEY_IP_BLACKLIST
 	} else {
-		rdsKey = RDS_KEY_IP_WHITELIST
+		rdsKey = constant.RDS_KEY_IP_WHITELIST
 	}
 
 	ipArr := strings.Split(ip, ",")
@@ -30,10 +26,10 @@ func AddIp(ipType int, ip string) {
 
 func DelIp(ipType int, ip string) {
 	var rdsKey string
-	if ipType == IP_TYPE_BLACKLIST {
-		rdsKey = RDS_KEY_IP_BLACKLIST
+	if ipType == constant.IP_TYPE_BLACKLIST {
+		rdsKey = constant.RDS_KEY_IP_BLACKLIST
 	} else {
-		rdsKey = RDS_KEY_IP_WHITELIST
+		rdsKey = constant.RDS_KEY_IP_WHITELIST
 	}
 
 	ipArr := strings.Split(ip, ",")

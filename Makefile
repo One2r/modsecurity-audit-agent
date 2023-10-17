@@ -17,6 +17,7 @@ clean:
 		rm -f $(BINARY_DARWIN)
 		rm -f $(BINARY_UNIX)
 		rm -f $(BINARY_ARM)
+		rm -f $(BINARY_WIN)
 
 # Cross compilation
 build-darwin:
