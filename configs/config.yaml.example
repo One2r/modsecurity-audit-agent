@@ -1,9 +1,9 @@
 app:
-  debug: True
+  debug: true
   port: "8080"
 
 waf:
-  storage-audit-log: true
+  storage-audit-log: false
   ban-ip-if-scan-404-url: 50
   #ban-ip-if-ddos: 3
 
