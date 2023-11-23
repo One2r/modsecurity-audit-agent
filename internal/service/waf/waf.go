@@ -3,6 +3,7 @@ package waf
 import (
 	"strings"
 	"encoding/json"
+	"net/http"
 
 	"github.com/spf13/viper"
 
@@ -49,7 +50,7 @@ func Auditlog(log []byte) {
 		panic(err)
 	}
 
-	if auditlog.Transaction.Response.HTTPCode == 404 {
+	if auditlog.Transaction.Response.HTTPCode == http.StatusNotFound {
 		banByScan404(auditlog)
 	}
 }
