@@ -3,6 +3,7 @@ app:
   port: "8080"
 
 waf:
+  storage-audit-log: true
   ban-ip-if-scan-404-url: 50
   #ban-ip-if-ddos: 3
 

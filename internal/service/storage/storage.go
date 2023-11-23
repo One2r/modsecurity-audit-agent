@@ -14,7 +14,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func SaveToEs(data []byte, index string) {
+func SaveToEs(data []byte) {
 
 	esurl := viper.GetString("elasticsearch.url")
 	if esurl == "" {
@@ -42,6 +42,7 @@ func SaveToEs(data []byte, index string) {
 		panic(err)
 	}
 
+	index := viper.GetString("elasticsearch.audit-log-index")
 	req := esapi.IndexRequest{
 		Index: index,
 		Body:  bytes.NewReader(data),

@@ -38,14 +38,17 @@ func DelIp(ipType int, ip string) {
 }
 
 func Auditlog(log []byte) {
-	// save to es
-	index := viper.GetString("elasticsearch.audit-log-index")
-	storage.SaveToEs(log, index)
+
+	if viper.GetBool("waf.storage-audit-log") {
+		// save to es
+		storage.SaveToEs(log)
+	}
 
 	var auditlog model.Auditlog
 	if err := json.Unmarshal(log, &auditlog); err != nil {
 		panic(err)
 	}
+
 	if auditlog.Transaction.Response.HTTPCode == 404 {
 		banByScan404(auditlog)
 	}
