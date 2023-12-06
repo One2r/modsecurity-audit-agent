@@ -14,7 +14,16 @@ import (
 	"github.com/spf13/viper"
 )
 
-func SaveToEs(data []byte) {
+func SaveAuditlog(data []byte) {
+	if !viper.GetBool("waf.storage-audit-log") {
+		return
+	}
+
+	index := viper.GetString("elasticsearch.audit-log-index")
+	saveToEs(data, index)
+}
+
+func saveToEs(data []byte, index string) {
 
 	esurl := viper.GetString("elasticsearch.url")
 	if esurl == "" {
@@ -42,7 +51,6 @@ func SaveToEs(data []byte) {
 		panic(err)
 	}
 
-	index := viper.GetString("elasticsearch.audit-log-index")
 	req := esapi.IndexRequest{
 		Index: index,
 		Body:  bytes.NewReader(data),

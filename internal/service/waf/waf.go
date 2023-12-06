@@ -5,8 +5,6 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/spf13/viper"
-
 	"modsecurity-auditlog-agent/internal/service/storage"
 	"modsecurity-auditlog-agent/internal/model"
 	"modsecurity-auditlog-agent/internal/constant"
@@ -40,10 +38,7 @@ func DelIp(ipType int, ip string) {
 
 func Auditlog(log []byte) {
 
-	if viper.GetBool("waf.storage-audit-log") {
-		// save to es
-		storage.SaveToEs(log)
-	}
+	go storage.SaveAuditlog(log)
 
 	var auditlog model.Auditlog
 	if err := json.Unmarshal(log, &auditlog); err != nil {
