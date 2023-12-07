@@ -17,3 +17,9 @@ elasticsearch:
   username: "elastic"
   password: "your-password"
   audit-log-index: "waf-audit-log"
+  
+ alert:
+   type: "webhook"
+   time_intervals: "30m"
+   webhook_url: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=your-key"
+   webhook_type: "workwx"

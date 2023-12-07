@@ -48,4 +48,9 @@ func Auditlog(log []byte) {
 	if auditlog.Transaction.Response.HTTPCode == http.StatusNotFound {
 		banByScan404(auditlog)
 	}
+
+	//needAlert := true
+	//if needAlert {
+	//	go alert.Alert(auditlog)
+	//}
 }
